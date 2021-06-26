@@ -20,7 +20,9 @@ app.get("/", (req, res) => res.send(`
 app.post("/github", (req, res) => {
   //TODO: Change the content variable to contain the repo name and github username
   //... and more emojis
-  const content = ":wave: Hi mom!!";
+  const user = req.body.sender.login;
+  const repoName = req.body.repository.name;
+  const content = `${user} just starred ${repoName}`
   const avatarUrl = req.body.sender.avatar_url;
   axios
     .post(process.env.DISCORD_WEBHOOK_URL, {
